@@ -1,0 +1,7 @@
+error: No command handlers found
+ --> tests/ui/play.rs:3:1
+  |
+3 | command_handlers!();
+  | ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `command_handlers` (in Nightly builds, run with -Z macro-backtrace for more info)
