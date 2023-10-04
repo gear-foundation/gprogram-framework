@@ -26,13 +26,19 @@ command_handlers!(
 
     // This
     fn do_this(p1: u32, p2: String) -> Result<(String, u32), String> {
-        debug!("Handling do this: {} {}", p1, p2);
+        debug!("Handling 'do_this': {}, {}", p1, p2);
         Ok((p2, p1))
     }
 
     // That
     fn do_that(param: DoThatParam) -> Result<(String, u32), String> {
-        debug!("Handling do that: {:?}", param);
+        debug!("Handling 'do_that': {:?}", param);
         Ok((param.p2, param.p1))
+    }
+
+    // Fail
+    fn fail(message: String) -> Result<(), String> {
+        debug!("Handling 'fail': {}", message);
+        Err(message)
     }
 );
