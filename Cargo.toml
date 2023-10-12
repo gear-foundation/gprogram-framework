@@ -18,6 +18,7 @@ members = [
 [workspace.dependencies]
 convert_case = "0.6"
 gmeta = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
+gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
 gsys = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
 gwasm-builder = { package = "gear-wasm-builder", git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
 parity-scale-codec = { version = "3.6.4", default-features = false }

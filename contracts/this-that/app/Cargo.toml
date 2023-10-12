@@ -6,9 +6,7 @@ edition = "2021"
 [dependencies]
 gmeta.workspace = true
 gprogram-framework-macros = { path = "../../../macros" }
-gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3", features = [
-    "debug",
-] }
+gstd = { workspace = true, features = ["debug"] }
 gsys.workspace = true
 parity-scale-codec = { workspace = true, features = ["derive"] }
 scale-info = { workspace = true, features = ["derive"] }

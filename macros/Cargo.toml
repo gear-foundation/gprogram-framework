@@ -13,7 +13,7 @@ gprogram-framework-macros-core = { path = "./core" }
 proc-macro-error.workspace = true
 
 [dev-dependencies]
-gstd = { git = "https://github.com/gear-tech/gear", tag = "v0.3.3" }
+gstd.workspace = true
 gsys.workspace = true
 parity-scale-codec = { workspace = true, features = ["derive"] }
 scale-info = { workspace = true, features = ["derive"] }
