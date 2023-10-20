@@ -7,5 +7,12 @@ edition = "2021"
 this-that-app = { path = "../app" }
 
 [build-dependencies]
+convert-case.workspace = true
+gmeta.workspace = true
 gwasm-builder.workspace = true
+handlebars.workspace = true
+parity-scale-codec.workspace = true
+scale-info = { workspace = true, features = ["decode", "serde"] }
+serde.workspace = true
+serde-json.workspace = true
 this-that-app = { path = "../app", features = ["contract-io"] }
