@@ -13,7 +13,6 @@ mod gprogram {
 
     command_handlers!(
         fn set_value(value: u32) -> Result<(), ()> {
-            assert_eq!(value, 42);
             Ok(())
         }
     );

@@ -29,5 +29,4 @@ fn main() {
         p1: 1,
         p2: "2".into(),
     });
-    //let _result = handle_impl(_do_this_cmd);
 }
