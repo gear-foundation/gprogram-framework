@@ -1,0 +1,7 @@
+error: No handlers found. Please either define one or remove the macro usage
+ --> tests/ui/no_query_handlers.rs:7:5
+  |
+7 |     query_handlers!();
+  |     ^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `query_handlers` (in Nightly builds, run with -Z macro-backtrace for more info)

@@ -1,0 +1,13 @@
+error[E0658]: non-inline modules in proc macro input are unstable
+ --> tests/ui/gprogram_must_be_inline.rs:4:1
+  |
+4 | mod gprogram_mod;
+  | ^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #54727 <https://github.com/rust-lang/rust/issues/54727> for more information
+
+error: Module attributed with `gprogram` must be inline
+ --> tests/ui/gprogram_must_be_inline.rs:4:1
+  |
+4 | mod gprogram_mod;
+  | ^^^^^^^^^^^^^^^^^

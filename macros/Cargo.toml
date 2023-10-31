@@ -10,6 +10,7 @@ proc-macro = true
 
 [dependencies]
 gprogram-framework-macros-core = { path = "./core" }
+nameof.workspace = true
 proc-macro-error.workspace = true
 
 [dev-dependencies]

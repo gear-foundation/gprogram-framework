@@ -528,6 +528,7 @@ dependencies = [
  "gprogram-framework-macros-core",
  "gstd",
  "gsys",
+ "nameof",
  "parity-scale-codec",
  "proc-macro-error",
  "scale-info",
@@ -741,6 +742,12 @@ name = "memchr"
 version = "2.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f665ee40bc4a3c5590afb1e9677db74a508659dfd71e126420da8274909a0167"
+
+[[package]]
+name = "nameof"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9ce8b389a86cabeb0d8b33a61e60f3cbb4de38914342fe274e69111f3b5d9c44"
 
 [[package]]
 name = "nodrop"

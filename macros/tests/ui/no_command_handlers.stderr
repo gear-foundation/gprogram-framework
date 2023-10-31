@@ -1,0 +1,7 @@
+error: No handlers found. Please either define one or remove the macro usage
+ --> tests/ui/no_command_handlers.rs:7:5
+  |
+7 |     command_handlers!();
+  |     ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `command_handlers` (in Nightly builds, run with -Z macro-backtrace for more info)
