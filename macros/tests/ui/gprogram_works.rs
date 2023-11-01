@@ -12,7 +12,7 @@ mod gprogram {
     );
 
     command_handlers!(
-        fn set_value(value: u32) -> Result<(), ()> {
+        fn set_value(_value: u32) -> Result<(), ()> {
             Ok(())
         }
     );

@@ -16,6 +16,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+//! Procedural macros for the `gprogram-framework`.
+
 use gprogram_framework_macros_core::{
     gprogram_command_handlers_core, gprogram_core, gprogram_query_handlers_core,
 };
