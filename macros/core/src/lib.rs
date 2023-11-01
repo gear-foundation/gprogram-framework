@@ -54,7 +54,7 @@ pub fn gprogram_core(
         .unwrap_or_else(|| abort!(tokens, "Module attributed with `gprogram` must be inline"))
         .1;
 
-    gprogram::discover_handlers_block(
+    gprogram::discover_handlers_blocks(
         &gprogram_mod_content,
         command_handlers_macro_name,
         query_handlers_macro_name,

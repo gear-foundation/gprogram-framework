@@ -31,7 +31,7 @@ static mut DISCOVERED_QUERY_HANDLERS_BLOCK_HASH: Option<u64> = None;
 // This is a hash of the handlers block macro which will be executed last
 static mut FINALIZING_HANDLERS_BLOCK_HASH: Option<u64> = None;
 
-pub(super) fn discover_handlers_block(
+pub(super) fn discover_handlers_blocks(
     gprogram_mod_content: &Vec<syn::Item>,
     command_handlers_macro_name: &str,
     query_handlers_macro_name: &str,
