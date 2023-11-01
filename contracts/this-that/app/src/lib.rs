@@ -32,7 +32,7 @@ pub enum ManyVariants {
     Three(Option<u32>),
     Four { a: u32, b: Option<u16> },
     Five(String, u32),
-    Six((u32)),
+    Six((u32,)),
 }
 
 #[gprogram]
@@ -56,7 +56,7 @@ mod gprogram {
         }
 
         // That
-        fn do_that(param: DoThatParam) -> Result<(String, u32), (String)> {
+        fn do_that(param: DoThatParam) -> Result<(String, u32), (String,)> {
             debug!("Handling 'do_that': {:?}", param);
             Ok((param.p2, param.p1))
         }
