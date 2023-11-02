@@ -1,0 +1,13 @@
+error: There must be a single `command_handlers` block in the `gprogram` module
+  --> tests/ui/single_command_handlers_block.rs:13:5
+   |
+13 |     command_handlers!(
+   |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `command_handlers`
+ --> tests/ui/single_command_handlers_block.rs:1:33
+  |
+1 | use gprogram_framework_macros::{command_handlers, gprogram};
+  |                                 ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default

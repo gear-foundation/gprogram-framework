@@ -1,0 +1,7 @@
+error: Async command handlers are not implemented. Please use sync ones
+  --> tests/ui/async_command_handlers_not_implemented.rs:8:9
+   |
+8  | /         async fn do_this() -> Result<(), ()> {
+9  | |             Ok(())
+10 | |         }
+   | |_________^
