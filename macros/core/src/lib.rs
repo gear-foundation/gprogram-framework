@@ -84,31 +84,30 @@ pub fn gprogram_query_handlers_core(tokens: TokenStream2) -> TokenStream2 {
 }
 
 fn command_handlers_core(tokens: TokenStream2) -> TokenStream2 {
-    let fn_param_name = syn::Ident::new(COMMAND_FN_PARAM_NAME, proc_macro2::Span::call_site());
+    let func_param_ident = syn::Ident::new(COMMAND_FN_PARAM_NAME, proc_macro2::Span::call_site());
 
     handlers::generate(
         &tokens,
         COMMANDS_ENUM_NAME,
         COMMAND_RESPONSES_ENUM_NAME,
         COMMAND_FN_NAME,
-        |context| {
-            let request_enum_name = context.param_type_name;
-            let fn_name = context.name;
-            let (fn_call, entry_point_signature) = if context.is_async {
-                // quote!(#fn_name(#fn_param_name).await),
+        |generated_func_info| {
+            let request_type_ident = generated_func_info.param_type_ident;
+            let func_ident = generated_func_info.ident;
+            let (fn_call, entry_point_signature) = if generated_func_info.is_async {
                 abort!(
                     tokens,
                     "Async command handlers are not implemented. Please use sync ones"
                 )
             } else {
                 (
-                    quote!(#fn_name(#fn_param_name)),
+                    quote!(#func_ident(#func_param_ident)),
                     quote!(#[no_mangle] extern "C" fn handle()),
                 )
             };
             quote!(
                 #entry_point_signature {
-                    let #fn_param_name = gstd::msg::load::<#request_enum_name>().expect("This needs to be handled in a consistent way: input parse error");
+                    let #func_param_ident = gstd::msg::load::<#request_type_ident>().expect("This needs to be handled in a consistent way: input parse error");
                     let (result, is_error) = #fn_call;
                     let result = result.encode();
                     if is_error {
@@ -122,30 +121,30 @@ fn command_handlers_core(tokens: TokenStream2) -> TokenStream2 {
 }
 
 fn query_handlers_core(tokens: TokenStream2) -> TokenStream2 {
-    let fn_param_name = syn::Ident::new(QUERY_FN_PARAM_NAME, proc_macro2::Span::call_site());
+    let func_param_ident = syn::Ident::new(QUERY_FN_PARAM_NAME, proc_macro2::Span::call_site());
 
     handlers::generate(
         &tokens,
         QUERIES_ENUM_NAME,
         QUERY_RESPONSES_ENUM_NAME,
         QUERY_FN_NAME,
-        |context| {
-            let request_enum_name = context.param_type_name;
-            let fn_name = context.name;
-            let (fn_call, entry_point_signature) = if context.is_async {
+        |generated_func_info| {
+            let request_type_ident = generated_func_info.param_type_ident;
+            let func_ident = generated_func_info.ident;
+            let (fn_call, entry_point_signature) = if generated_func_info.is_async {
                 abort!(
                     tokens,
                     "Async query handlers are not supported. Please use sync ones"
                 );
             } else {
                 (
-                    quote!(#fn_name(#fn_param_name)),
+                    quote!(#func_ident(#func_param_ident)),
                     quote!(#[no_mangle] extern "C" fn state()),
                 )
             };
             quote!(
                 #entry_point_signature {
-                    let #fn_param_name = gstd::msg::load::<#request_enum_name>().expect("This needs to be handled in a consistent way: input parse error");
+                    let #func_param_ident = gstd::msg::load::<#request_type_ident>().expect("This needs to be handled in a consistent way: input parse error");
                     let (result, _) = #fn_call;
                     let result = result.encode();
                     gstd::msg::reply(result, 0).expect("This needs to be handled in a consistent way: reply error");

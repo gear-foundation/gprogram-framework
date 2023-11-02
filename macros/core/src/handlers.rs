@@ -25,8 +25,8 @@ use quote::quote;
 use syn::{self, spanned::Spanned};
 
 pub(super) struct GeneratedFuncInfo<'a> {
-    pub(super) name: &'a syn::Ident,
-    pub(super) param_type_name: &'a syn::Ident,
+    pub(super) ident: &'a syn::Ident,
+    pub(super) param_type_ident: &'a syn::Ident,
     pub(super) is_async: bool,
 }
 
@@ -54,11 +54,11 @@ pub(super) fn generate(
 
     let scale_codec_crate_ident = get_scale_codec_crate_ident(request_enum_name);
     let scale_info_crate_ident = get_scale_info_crate_ident(request_enum_name);
-    let module_name = get_handlers_mod_ident(request_enum_name);
+    let module_ident = get_handlers_mod_ident(request_enum_name);
 
     let entry_point = generate_entry_point(&GeneratedFuncInfo {
-        param_type_name: &request_enum_ident,
-        name: &func_ident,
+        param_type_ident: &request_enum_ident,
+        ident: &func_ident,
         is_async: full_handler_parts.is_async,
     });
 
@@ -73,7 +73,7 @@ pub(super) fn generate(
         #response_enum
 
         #[cfg(not(feature = "contract-io"))] // TODO: Make this configurable?
-        pub mod #module_name {
+        pub mod #module_ident {
             use super::*;
 
             extern crate gstd;
@@ -193,30 +193,22 @@ impl SubHandlerParts {
 
         let (arg_types, arg_types_count) = Self::arg_types(handler_signature);
 
-        let request_enum_variant = {
-            // Check later if this works.
-            // quote!(
-            //      #enum_variant_name(#(#arg_types),*),
-            // )
-            let request_enum_variant_params = arg_types.map(|arg_type| quote!(#arg_type,));
-            quote!(
-                #enum_variant_name(#(#request_enum_variant_params)*),
-            )
-        };
+        let request_enum_variant = quote!(
+             #enum_variant_name(#(#arg_types,)*),
+        );
 
         let call_match_arm = {
-            let call_params = (0..arg_types_count)
+            let call_param_idents = (0..arg_types_count)
                 .map(|idx| syn::Ident::new(&format!("v{}", idx), proc_macro2::Span::call_site()))
-                //.map(|param_ident| quote!(#param_ident,))
                 .collect::<Vec<_>>();
-            let call_name = &handler_signature.ident;
+            let call_ident = &handler_signature.ident;
             let call = if handler_signature.asyncness.is_some() {
-                quote!(#call_name(#(#call_params),*).await)
+                quote!(#call_ident(#(#call_param_idents),*).await)
             } else {
-                quote!(#call_name(#(#call_params),*))
+                quote!(#call_ident(#(#call_param_idents),*))
             };
             quote!(
-                #request_enum_ident::#enum_variant_name(#(#call_params),*) => {
+                #request_enum_ident::#enum_variant_name(#(#call_param_idents),*) => {
                     let result: Result<_, _> = #call;
                     let is_error = result.is_err();
                     (#response_enum_ident::#enum_variant_name(result), is_error)
