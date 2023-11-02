@@ -1,0 +1,20 @@
+{{#each types as |type|}}
+	{{#each type.type.def}}
+		{{~> (deref @key) id=type.id}}
+    {{/each}}
+
+
+{{/each}}
+
+service {
+{{#each commands.type.def.variant.variants}}
+  async {{name}} : (
+    {{~#each fields~}}
+      {{#if @index}}, {{/if}}{{lookup @root/registry type}}
+    {{~/each~}}
+  ) -> 
+  {{~#with (lookup @root/commandResponses.type.def.variant.variants @index)}}
+  {{lookup @root/registry fields.[0].type}}
+  {{/with}}
+{{/each}}
+}
