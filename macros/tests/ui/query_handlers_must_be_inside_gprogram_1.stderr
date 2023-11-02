@@ -1,0 +1,7 @@
+error: The `query_handlers` block must be on the top level of `gprogram` module
+ --> tests/ui/query_handlers_must_be_inside_gprogram_1.rs:7:5
+  |
+7 | /     fn value(value: u32) -> Result<u32, ()> {
+8 | |         Ok(value)
+9 | |     }
+  | |_____^

@@ -1,0 +1,11 @@
+[package]
+name = "this-that"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+this-that-app = { path = "../app" }
+
+[build-dependencies]
+gwasm-builder.workspace = true
+this-that-app = { path = "../app", features = ["contract-io"] }

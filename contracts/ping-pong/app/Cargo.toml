@@ -1,0 +1,13 @@
+[package]
+name = "ping-pong-app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gmeta.workspace = true
+gstd = { workspace = true, features = ["debug"] }
+parity-scale-codec = { workspace = true, features = ["derive"] }
+scale-info = { workspace = true, features = ["derive"] }
+
+[features]
+"contract-io" = []

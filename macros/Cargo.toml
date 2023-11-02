@@ -1,0 +1,21 @@
+[package]
+name = "gprogram-framework-macros"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+gprogram-framework-macros-core = { path = "./core" }
+nameof.workspace = true
+proc-macro-error.workspace = true
+
+[dev-dependencies]
+gstd.workspace = true
+gsys.workspace = true
+parity-scale-codec = { workspace = true, features = ["derive"] }
+scale-info = { workspace = true, features = ["derive"] }
+trybuild.workspace = true

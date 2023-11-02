@@ -1,0 +1,13 @@
+error: There must be a single `query_handlers` block in the `gprogram` module
+  --> tests/ui/single_query_handlers_block.rs:13:5
+   |
+13 |     query_handlers!(
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `query_handlers`
+ --> tests/ui/single_query_handlers_block.rs:1:43
+  |
+1 | use gprogram_framework_macros::{gprogram, query_handlers};
+  |                                           ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default

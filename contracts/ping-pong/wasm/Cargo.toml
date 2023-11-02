@@ -1,0 +1,11 @@
+[package]
+name = "ping-pong"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ping-pong-app = { path = "../app" }
+
+[build-dependencies]
+gwasm-builder.workspace = true
+ping-pong-app = { path = "../app", features = ["contract-io"] }

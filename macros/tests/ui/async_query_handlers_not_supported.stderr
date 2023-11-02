@@ -1,0 +1,7 @@
+error: Async query handlers are not supported. Please use sync ones
+  --> tests/ui/async_query_handlers_not_supported.rs:8:9
+   |
+8  | /         async fn this() -> Result<(), ()> {
+9  | |             Ok(())
+10 | |         }
+   | |_________^

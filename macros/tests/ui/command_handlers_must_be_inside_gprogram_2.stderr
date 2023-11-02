@@ -1,0 +1,7 @@
+error: The `command_handlers` block must be on the top level of `gprogram` module
+  --> tests/ui/command_handlers_must_be_inside_gprogram_2.rs:11:13
+   |
+11 | /             fn set_value(value: u32) -> Result<(), ()> {
+12 | |                 Ok(())
+13 | |             }
+   | |_____________^

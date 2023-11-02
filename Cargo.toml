@@ -1,0 +1,31 @@
+[workspace.package]
+version = "1.0.1"
+authors = ["Gear Technologies"]
+edition = "2021"
+license = "GPL-3.0"
+
+[workspace]
+resolver = "2"
+members = [
+    "macros",
+    "macros/core",
+    "contracts/ping-pong/app",
+    "contracts/ping-pong/wasm",
+    "contracts/this-that/app",
+    "contracts/this-that/wasm",
+]
+
+[workspace.dependencies]
+convert-case = { package = "convert_case", version = "0.6" }
+gmeta = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
+gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
+gsys = { git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
+gwasm-builder = { package = "gear-wasm-builder", git = "https://github.com/gear-tech/gear.git", tag = "v0.3.3" }
+nameof = "1.2"
+parity-scale-codec = { version = "3.6.4", default-features = false }
+proc-macro-error = "1.0.4"
+proc-macro2 = { version = "1", default-features = false }
+quote = "1.0.33"
+scale-info = { version = "2.5.0", default-features = false }
+syn = { version = "2.0.32" }
+trybuild = "1"
